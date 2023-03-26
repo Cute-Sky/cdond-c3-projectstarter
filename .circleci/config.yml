@@ -102,12 +102,10 @@ jobs:
           keys: [frontend-build]
       - run:
           name: Analyse frontend
-          command: cd frontend
+          command: |
+            cd backend
             npm install
-            npm audit fix --audit-level-critical --force
-            npm audit fix --audit-level-critical --force
-            npm audit fix --audit-level-critical --force
-            npm audit --audit-level-critical
+            npm audit fix --audit-level=critical --force && npm audit --audit-level=critical
 
   scan-backend:
     docker:
@@ -118,12 +116,10 @@ jobs:
           keys: [backend-build]
       - run:
           name: Analyse backend
-          command: cd backend
+          command: |
+            cd frontend
             npm install
-            npm audit fix --audit-level-critical --force
-            npm audit fix --audit-level-critical --force
-            npm audit fix --audit-level-critical --force
-            npm audit --audit-level-critical
+            npm audit fix --audit-level=critical --force && npm audit --audit-level=critical
 
   # deploy-infrastructure:
   #   docker:
