@@ -73,7 +73,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: { frontend-build }
+          keys: [frontend-build]
       - run:
           name: Run Frontend
           command: cd frontend
@@ -85,7 +85,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: { backend-build }
+          keys: [backend-build]
       - run:
           name: Run backend
           command: cd backend
