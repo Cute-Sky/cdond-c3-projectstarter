@@ -193,8 +193,9 @@ jobs:
       # Here's where you will add some code to rollback on failure
       - save_cache:
           paths: [backend/node_modules]
-          key: backend-deps
-            - notify_on_failure
+          key:
+            backend-deps
+            # - notify_on_failure
   # configure-infrastructure:
   #   docker:
   #     - image: python:3.10-alpine3.16
