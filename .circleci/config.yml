@@ -238,9 +238,9 @@ jobs:
 
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-- save_cache:
-    paths: [backend/node_modules]
-    key: backend-deps
+  # - save_cache:
+  #     paths: [backend/node_modules]
+  #     key: backend-deps
 
   deploy-frontend:
     docker:
@@ -283,9 +283,9 @@ jobs:
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations: workflow_id:${CIRCLE_WORKFLOW_ID:0:7}
-- save_cache:
-    paths: [backend/node_modules]
-    key: backend-deps
+  # - save_cache:
+  #     paths: [backend/node_modules]
+  #     key: backend-deps
 
   deploy-backend:
     docker:
@@ -345,9 +345,9 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-- save_cache:
-    paths: [backend/node_modules]
-    key: backend-deps
+  # - save_cache:
+  #     paths: [backend/node_modules]
+  #     key: backend-deps
 
   smoke-test:
     docker:
@@ -405,9 +405,9 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-- save_cache:
-    paths: [backend/node_modules]
-    key: backend-deps
+  # - save_cache:
+  #     paths: [backend/node_modules]
+  #     key: backend-deps
 
   cloudfront-update:
     docker:
@@ -443,10 +443,10 @@ jobs:
             echo OldWorkflowID: $(cat ~/project/OldWorkflowID.txt)
             echo CurrentWorkflowID: "${CIRCLE_WORKFLOW_ID:0:7}"
       # Here's where you will add some code to rollback on failure
-- save_cache:
-    paths: [backend/node_modules]
-    key: backend-deps
-      - notify_on_failure
+# - save_cache:
+#     paths: [backend/node_modules]
+#     key: backend-deps
+#       - notify_on_failure
 cleanup:
   docker:
     # Docker image here
@@ -474,9 +474,9 @@ cleanup:
             aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}" || true
             aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}" || true
           fi
-- save_cache:
-    paths: [backend/node_modules]
-    key: backend-deps
+# - save_cache:
+#     paths: [backend/node_modules]
+#     key: backend-deps
 
 workflows:
   default:
